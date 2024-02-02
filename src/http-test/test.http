@@ -1,0 +1,11 @@
+### Запрос на создание пользователя
+POST http://localhost:8080/persons
+Content-type: application/json
+
+
+{
+  "name": "Артем",
+  "yearOfBirth": 2004
+}
+
+
