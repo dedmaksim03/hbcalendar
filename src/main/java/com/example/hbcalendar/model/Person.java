@@ -1,23 +1,37 @@
 package com.example.hbcalendar.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
-@Getter
-@Setter
+@Entity
+@Data
+@NoArgsConstructor
+@Table(name = "persons")
 public class Person {
-    private String name;
-    private int yearOfBirth;
 
-    public Person(String name, int yearOfBirth){
-        this.name = name;
-        this.yearOfBirth = yearOfBirth;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(name = "name")
+    @NotNull
+    @Length(max = 255)
+    private String name;
+
+    @Column(name = "day_of_birth")
+    @NotNull
+    private int dayOfBirth;
+
+    @Column(name = "month_of_birth_id")
+    @NotNull
+    private int monthOfBirth;
 
     @Override
     public String toString(){
         return "{name: '" + name + "'" +
-                ", yearOfBirth: '" + yearOfBirth + "'}";
+                ", yearOfBirth: '" + dayOfBirth + "." + monthOfBirth + "'}";
 
     }
 }

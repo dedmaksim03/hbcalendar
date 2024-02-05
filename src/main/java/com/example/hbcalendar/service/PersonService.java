@@ -1,10 +1,25 @@
 package com.example.hbcalendar.service;
 
 import com.example.hbcalendar.model.Person;
+import com.example.hbcalendar.model.PersonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface PersonService {
+import java.util.List;
 
-    void create(Person person);
+@Service
+public class PersonService {
 
-    Person read(int id);
+    @Autowired
+    private PersonRepository personRepository;
+
+    public List<Person> findAll() {
+        return personRepository.findAll();
+    }
+
+    public void save(Person person) {
+        personRepository.save(person);
+    }
+
+
 }

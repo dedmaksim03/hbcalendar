@@ -1,11 +1,13 @@
 ### Запрос на создание пользователя
-POST http://localhost:8080/persons
+POST http://localhost:8080/persons/create
 Content-type: application/json
 
 
 {
-  "name": "Артем",
-  "yearOfBirth": 2004
+  "name": "Нетропаловка Некруз",
+  "dayOfBirth": 12,
+  "monthOfBirth": 7
 }
+
 
 
