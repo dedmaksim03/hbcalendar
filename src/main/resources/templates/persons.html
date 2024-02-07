@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>all_persons</title>
+</head>
+<body>
+<div>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Day</th>
+            <th>Month</th>
+        </tr>
+        <tr th:each ="person : ${persons}">
+            <td th:utext="${person.getName()}">...</td>
+            <td th:utext="${person.getDayOfBirth()}">...</td>
+            <td th:utext="${person.getMonthOfBirth()}">...</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

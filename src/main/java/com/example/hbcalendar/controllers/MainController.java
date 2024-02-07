@@ -1,11 +1,12 @@
 package com.example.hbcalendar.controllers;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-@RestController
-public class Controller {
+@org.springframework.stereotype.Controller
+public class MainController {
 
-//    private static final Logger LOGGER = LoggerFactory.getLogger(Controller.class);
+//    private static final Logger LOGGER = LoggerFactory.getLogger(MainController.class);
 
 //    @PostMapping("/persons")
 //    public void addPerson(@Valid @RequestBody AddPersonDTO addPersonDTO){
@@ -22,7 +23,7 @@ public class Controller {
 
     @GetMapping("/")
     public String getStartApplication(){
-        return "Hello, user!";
+        return "index";
     }
 //
 //    @GetMapping("/{name}")

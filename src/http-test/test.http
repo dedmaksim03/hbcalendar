@@ -4,9 +4,9 @@ Content-type: application/json
 
 
 {
-  "name": "Нетропаловка Некруз",
-  "dayOfBirth": 12,
-  "monthOfBirth": 7
+  "name": "",
+  "dayOfBirth": 1,
+  "monthOfBirth": 5
 }
 
 
