@@ -8,7 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Objects;
 
 @Controller
 public class PersonController {
@@ -26,18 +30,26 @@ public class PersonController {
 
     @PostMapping("/persons/create")
     @ResponseBody
-    public void create(@RequestBody Person person){
+    public ModelAndView create(@RequestParam String name, int dayOfBirth, int monthOfBirth, ModelMap modelMap){
+        Person person = new Person(name, dayOfBirth, monthOfBirth);
         personService.save(person);
         LOGGER.info(String.valueOf(person));
+        modelMap.addAttribute("attribute", "redirectWithRedirectPrefix");
+        return new ModelAndView("redirect:/persons", modelMap);
+    }
+
+    @PostMapping("/persons/delete")
+    @ResponseBody
+    public ModelAndView delete(@RequestParam String name, ModelMap modelMap){
+        personService.delete(name);
+        LOGGER.info("Удален друг: " + name);
+        modelMap.addAttribute("attribute", "redirectWithRedirectPrefix");
+        return new ModelAndView("redirect:/persons", modelMap);
     }
 
     @GetMapping("/persons")
     public String read(Model model){
         model.addAttribute("persons", personService.findAll());
-//        List<String> persons = new ArrayList<>();
-//        for (Person person: personService.findAll()) {
-//            persons.add(person.getName() + ": " + person.getDayOfBirth() + " " + monthService.getNameOfMonth(person.getMonthOfBirth()));
-//        }
         return "persons";
     }
 

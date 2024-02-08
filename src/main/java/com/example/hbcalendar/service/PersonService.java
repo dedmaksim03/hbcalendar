@@ -21,5 +21,11 @@ public class PersonService {
         personRepository.save(person);
     }
 
+    public void delete(String name) {
+        List<Person> persons = personRepository.findAllByName(name);
+        for (Person person: persons){
+            personRepository.deleteById(person.getId());
+        }
+    }
 
 }

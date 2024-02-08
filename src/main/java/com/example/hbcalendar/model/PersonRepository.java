@@ -3,7 +3,11 @@ package com.example.hbcalendar.model;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
-    Person findPersonByName(Person person);
+    List<Person> findAllByName(String name);
+
+    void deleteAllById(long id);
 }

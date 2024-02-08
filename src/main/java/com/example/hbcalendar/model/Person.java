@@ -28,6 +28,12 @@ public class Person {
     @NotNull
     private int monthOfBirth;
 
+    public Person(String name, int dayOfBirth, int monthOfBirth) {
+        this.name = name;
+        this.dayOfBirth = dayOfBirth;
+        this.monthOfBirth = monthOfBirth;
+    }
+
     @Override
     public String toString(){
         return "{name: '" + name + "'" +

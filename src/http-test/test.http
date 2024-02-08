@@ -1,13 +1,13 @@
 ### Запрос на создание пользователя
-POST http://localhost:8080/persons/create
-Content-type: application/json
-
-
-{
-  "name": "",
-  "dayOfBirth": 1,
-  "monthOfBirth": 5
-}
+POST http://localhost:8080/persons/delete?name=sdf
+#Content-type: application/json
+#
+#
+#{
+#  "name": "",
+#  "dayOfBirth": 1,
+#  "monthOfBirth": 5
+#}
 
 
 
