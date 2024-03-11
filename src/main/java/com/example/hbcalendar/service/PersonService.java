@@ -28,4 +28,8 @@ public class PersonService {
         }
     }
 
+    public Person findById(Long id){
+        return personRepository.findById(id).orElse(null);
+    }
+
 }
