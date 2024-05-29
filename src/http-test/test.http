@@ -1,12 +1,14 @@
 ### Запрос на создание пользователя
-POST http://localhost:8080/api/v1/persons/delete?name=Геннадий
+GET http://localhost:8080/api/v1/persons
 #Content-type: application/json
 #
 #{
-#  "name": "Геннадий",
-#  "dayOfBirth": 5,
-#  "monthOfBirth": 10
+#  "name": "Геннадий Горин",
+#  "dayOfBirth": 1,
+#  "monthOfBirth": 12
 #}
+
+
 
 
 

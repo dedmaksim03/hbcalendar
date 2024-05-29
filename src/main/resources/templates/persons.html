@@ -3,48 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>all_persons</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="js/persons.js" type="text/babel"></script>
 </head>
 <body>
-<div>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Day</th>
-            <th>Month</th>
-        </tr>
-        <tr th:each ="person : ${persons}">
-            <td th:utext="${person.getName()}">...</td>
-            <td th:utext="${person.getDayOfBirth()}">...</td>
-            <td th:utext="${person.getMonthOfBirth()}">...</td>
-        </tr>
-    </table>
-    <form action="/persons/create" method="post">
-        <div>
-            <label for="name">Имя друга</label>
-            <input name="name" id="name" />
-        </div>
-        <div>
-            <label for="dayOfBirth">День рождения</label>
-            <input name="dayOfBirth" id="dayOfBirth" />
-        </div>
-        <div>
-            <label for="monthOfBirth">Месяц рождения</label>
-            <input name="monthOfBirth" id="monthOfBirth" />
-        </div>
-        <div>
-            <button>Добавить друга</button>
-        </div>
-    </form>
-    <h2>Удаление</h2>
-    <form action="/persons/delete" method="post">
-        <div>
-            <label for="name_for_delete">Имя друга для удаления</label>
-            <input name="name" id="name_for_delete" />
-        </div>
-        <div>
-            <button>Удалить друга</button>
-        </div>
-    </form>
-</div>
+    <div id="app"></div>
 </body>
 </html>
