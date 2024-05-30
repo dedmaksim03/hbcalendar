@@ -1,4 +1,4 @@
-package com.example.hbcalendar.Entity;
+package com.example.hbcalendar.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -9,11 +9,17 @@ import lombok.Data;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, name = "name")
     private String name;
+
+    @Column(name = "password")
     private String password;
-    private String role_id;
+
+    @ManyToOne()
+    @JoinColumn(name = "role_id")
+    private Role role;
 
 }
