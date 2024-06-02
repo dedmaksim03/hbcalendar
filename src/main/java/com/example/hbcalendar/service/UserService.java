@@ -1,7 +1,7 @@
 package com.example.hbcalendar.service;
 
+import com.example.hbcalendar.dtos.RegistrationUserDto;
 import com.example.hbcalendar.entities.Role;
-import com.example.hbcalendar.entities.RoleRepository;
 import com.example.hbcalendar.entities.User;
 import com.example.hbcalendar.entities.UserRepository;
 import jakarta.transaction.Transactional;
@@ -10,6 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,7 +22,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+    private final RoleService roleService;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional
@@ -42,8 +44,11 @@ public class UserService implements UserDetailsService {
         return userRepository.findByName(name);
     }
 
-    public void createNewUser(User user){
-        user.setRole(roleRepository.findByRoleName("ROLE_USER").get());
-        userRepository.save(user);
+    public User createNewUser(RegistrationUserDto registrationUserDto){
+        User user = new User();
+        user.setName(registrationUserDto.getName());
+        user.setPassword(passwordEncoder.encode(registrationUserDto.getPassword()));
+        user.setRole(roleService.getUserRole());
+        return userRepository.save(user);
     }
 }

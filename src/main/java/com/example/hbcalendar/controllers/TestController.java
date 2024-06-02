@@ -1,7 +1,11 @@
 package com.example.hbcalendar.controllers;
 
+import com.example.hbcalendar.utils.JwtTokenUtils;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +16,7 @@ import java.security.Principal;
 @RequestMapping("test/")
 @AllArgsConstructor
 public class TestController {
+    JwtTokenUtils jwtTokenUtils;
 
     @GetMapping("/welcome")
     public String welcome(){
@@ -19,14 +24,12 @@ public class TestController {
     }
 
     @GetMapping("/users")
-    @PreAuthorize("hasAuthority(1)")
     public String pageForUser(){
         return "This is page for only users";
     }
 
 
     @GetMapping("/admins")
-    @PreAuthorize("hasAuthority(2)")
     public String pageForAdmins(){
         return "This is page for only admins";
     }
@@ -38,8 +41,9 @@ public class TestController {
     }
 
     @GetMapping("/info")
-    public String userData(Principal principal) {
-        return principal.getName();
+    public String userData(HttpServletRequest request) {
+        String token = request.getHeader("Authorization").substring(7);
+        return jwtTokenUtils.getUserName(token);
     }
 
 }
