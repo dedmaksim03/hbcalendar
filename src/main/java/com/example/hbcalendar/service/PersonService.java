@@ -1,5 +1,6 @@
 package com.example.hbcalendar.service;
 
+import com.example.hbcalendar.entities.User;
 import com.example.hbcalendar.model.Person;
 import com.example.hbcalendar.model.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,10 @@ public class PersonService {
 
     public List<Person> findAll() {
         return personRepository.findAll();
+    }
+
+    public List<Person> findAllByUser(User user){
+        return personRepository.findAllByUser(user);
     }
 
     public void save(Person person) {

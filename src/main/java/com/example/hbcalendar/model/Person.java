@@ -1,5 +1,6 @@
 package com.example.hbcalendar.model;
 
+import com.example.hbcalendar.entities.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -24,15 +25,13 @@ public class Person {
     @NotNull
     private int dayOfBirth;
 
-    @Column(name = "month_of_birth_id")
+    @Column(name = "month_of_birth")
     @NotNull
     private int monthOfBirth;
 
-    public Person(String name, int dayOfBirth, int monthOfBirth) {
-        this.name = name;
-        this.dayOfBirth = dayOfBirth;
-        this.monthOfBirth = monthOfBirth;
-    }
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Override
     public String toString(){
